@@ -1,0 +1,30 @@
+# Docker Compose for ResNet Implementation
+version: '3.8'
+
+services:
+  resnet-app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./checkpoints:/app/checkpoints
+      - ./logs:/app/logs
+      - ./experiments:/app/experiments
+    environment:
+      - PYTHONPATH=/app
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
+
+  # Optional: Jupyter notebook for development
+  jupyter:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./data:/app/data
+      - ./checkpoints:/app/checkpoints
+      - ./logs:/app/logs
+      - ./experiments:/app/experiments
+    environment:
+      - PYTHONPATH=/app
+    command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=''
