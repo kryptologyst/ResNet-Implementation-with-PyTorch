@@ -70,8 +70,8 @@ pip install pytest black flake8 mypy
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd resnet-implementation
+git clone https://github.com/kryptologyst/ResNet-Implementation-with-PyTorch.git
+cd ResNet-Implementation-with-PyTorch
 
 # Install in development mode
 pip install -e .
